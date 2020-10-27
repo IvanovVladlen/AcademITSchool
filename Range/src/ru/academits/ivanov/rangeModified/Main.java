@@ -1,4 +1,4 @@
-package ru.academits.ivanov.range;
+package ru.academits.ivanov.rangeModified;
 
 import java.util.Scanner;
 

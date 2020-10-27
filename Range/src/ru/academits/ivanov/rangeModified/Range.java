@@ -1,4 +1,4 @@
-package ru.academits.ivanov.range;
+package ru.academits.ivanov.rangeModified;
 
 public class Range {
     private double from;

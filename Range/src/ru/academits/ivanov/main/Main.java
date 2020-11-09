@@ -5,6 +5,10 @@ import ru.academits.ivanov.range.Range;
 public class Main {
     private static void getOperationsWithRangesResults(Range rangeA, Range rangeB) {
         Range intersectionRanges = rangeA.getIntersection(rangeB);
+
+        if(intersectionRanges == null){
+            System.out.println("Интервалы не пересекаются");
+        }
         System.out.println("Интервал пересечения двух интервалов: " + intersectionRanges);
 
         Range[] unionRanges = rangeA.getUnion(rangeB);
@@ -44,10 +48,9 @@ public class Main {
 
         System.out.println("----------------------------------------------------------");
 
-        Range rangeA = new ru.academits.ivanov.range.Range(4, 28);
-        Range rangeB = new ru.academits.ivanov.range.Range(10, 30);
-        System.out.println("Проведем ряд математических операций для диапазонов: " + rangeA + " и "
-                + rangeB + ".");
+        Range rangeA = new Range(4, 15);
+        Range rangeB = new Range(10, 30);
+        System.out.println("Проведем ряд математических операций для диапазонов: " + rangeA + " и " + rangeB + ".");
 
         System.out.println("Результат:");
         getOperationsWithRangesResults(rangeA, rangeB);

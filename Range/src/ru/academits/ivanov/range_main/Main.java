@@ -1,30 +1,31 @@
-package ru.academits.ivanov.main;
+package ru.academits.ivanov.range_main;
 
 import ru.academits.ivanov.range.Range;
 
 public class Main {
-    private static void getOperationsWithRangesResults(Range rangeA, Range rangeB) {
-        Range intersectionRanges = rangeA.getIntersection(rangeB);
+    private static void testOperationsWithRanges(Range rangeA, Range rangeB) {
+        Range intersection = rangeA.getIntersection(rangeB);
 
-        if(intersectionRanges == null){
+        if (intersection == null) {
             System.out.println("Интервалы не пересекаются");
+        } else {
+            System.out.println("Интервал пересечения двух интервалов: " + intersection);
         }
-        System.out.println("Интервал пересечения двух интервалов: " + intersectionRanges);
 
-        Range[] unionRanges = rangeA.getUnion(rangeB);
+        Range[] union = rangeA.getUnion(rangeB);
         System.out.print("Интервал(ы) объединения двух интервалов: ");
-        for (Range e : unionRanges) {
+        for (Range e : union) {
             System.out.print(e + " ");
         }
         System.out.println();
 
-        Range[] differenceRanges = rangeA.getDifference(rangeB);
+        Range[] difference = rangeA.getDifference(rangeB);
 
-        if (differenceRanges.length < 1) {
+        if (difference.length < 1) {
             System.out.println("Интервал полностью вычтен.");
         } else {
             System.out.print("Интервал(ы) разности двух интервалов: ");
-            for (Range e : differenceRanges) {
+            for (Range e : difference) {
                 System.out.print(e + " ");
             }
         }
@@ -37,13 +38,12 @@ public class Main {
         double rangeLength = range.getLength();
         System.out.println("Длина заданного диапазона равна: " + rangeLength);
 
-        double checkNumber = 10.5;
-        boolean isInsideCheckNumber = range.isInside(checkNumber);
+        double number = 10.5;
 
-        if (isInsideCheckNumber) {
-            System.out.println("Число " + checkNumber + " входит в диапазон заданых чисел.");
+        if (range.isInside(number)) {
+            System.out.println("Число " + number + " входит в диапазон заданых чисел.");
         } else {
-            System.out.println("Число " + checkNumber + " не входит в диапазон заданых чисел.");
+            System.out.println("Число " + number + " не входит в диапазон заданых чисел.");
         }
 
         System.out.println("----------------------------------------------------------");
@@ -52,7 +52,7 @@ public class Main {
         Range rangeB = new Range(10, 30);
         System.out.println("Проведем ряд математических операций для диапазонов: " + rangeA + " и " + rangeB + ".");
 
-        System.out.println("Результат:");
-        getOperationsWithRangesResults(rangeA, rangeB);
+        System.out.println("Результат: ");
+        testOperationsWithRanges(rangeA, rangeB);
     }
 }

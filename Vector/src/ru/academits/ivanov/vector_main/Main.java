@@ -1,8 +1,8 @@
-package ru.academits.ivanov.vector.main;
+package ru.academits.ivanov.vector_main;
 
-import ru.academits.ivanov.vector.vector_methods.Vector;
+import ru.academits.ivanov.vector.Vector;
 
-import static ru.academits.ivanov.vector.vector_methods.Vector.*;
+import static ru.academits.ivanov.vector.Vector.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,22 +24,22 @@ public class Main {
         Vector vector4 = new Vector(4, array3);
         System.out.println("Печать vector4: " + vector4);
 
-        vector1.sum(vector2);
+        vector1.add(vector2);
         System.out.println("Сумма vector1 и vector2: " + vector1);
 
-        vector3.difference(vector4);
+        vector3.subtract(vector4);
         System.out.println("Вычитание vector4 из vector3: " + vector3);
 
         Vector vector5 = new Vector(new double[]{-4, 5, -2, 5.5, 32});
         System.out.println("Печать vector5: " + vector5);
 
-        vector5.multiplicationOnScalar(2);
+        vector5.multiplyByScalar(2);
         System.out.println("Умножение vector5 на скаляр: " + vector5);
 
-        vector5.reversalVector();
+        vector5.reverse();
         System.out.println("Разворот vector5: " + vector5);
 
-        double vectorLength = vector5.getVectorLength();
+        double vectorLength = vector5.getLength();
         System.out.println("Длинна вектора vector5: " + vectorLength);
 
         Vector vector6 = new Vector(new double[]{5, 5.8, 4, 5.5, 3, 2});

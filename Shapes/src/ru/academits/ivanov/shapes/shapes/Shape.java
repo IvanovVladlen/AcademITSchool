@@ -1,4 +1,4 @@
-package ru.academits.ivanov.shapes.shape_interface;
+package ru.academits.ivanov.shapes.shapes;
 
 public interface Shape {
     double getWidth();

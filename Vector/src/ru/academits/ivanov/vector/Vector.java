@@ -7,7 +7,7 @@ public class Vector {
 
     public Vector(int componentsCount) {
         if (componentsCount <= 0) {
-            throw new IllegalArgumentException("Error! components count <= 0");
+            throw new IllegalArgumentException("Components count = " + componentsCount);
         }
 
         components = new double[componentsCount];
@@ -15,7 +15,7 @@ public class Vector {
 
     public Vector(Vector vector) {
         if (vector == null) {
-            throw new IllegalArgumentException("Error! vector is null");
+            throw new IllegalArgumentException("Vector is null");
         }
 
         components = Arrays.copyOf(vector.components, vector.components.length);
@@ -23,7 +23,7 @@ public class Vector {
 
     public Vector(double[] array) {
         if (array.length == 0) {
-            throw new IllegalArgumentException("Error! array length = 0!");
+            throw new IllegalArgumentException("Array length = " + array.length);
         }
 
         components = Arrays.copyOf(array, array.length);
@@ -31,11 +31,11 @@ public class Vector {
 
     public Vector(int componentsCount, double[] array) {
         if (componentsCount <= 0) {
-            throw new IllegalArgumentException("Error! components count <= 0");
+            throw new IllegalArgumentException("Components count = " + componentsCount);
         }
 
-        if (array.length <= 0) {
-            throw new IllegalArgumentException("Error! array length <= 0!");
+        if (array.length < 0) {
+            throw new IllegalArgumentException("Array length = " + array.length);
         }
 
         components = Arrays.copyOf(array, componentsCount);
@@ -43,8 +43,7 @@ public class Vector {
 
     public double getComponent(int index) {
         if (index < 0 || index >= components.length) {
-            throw new IndexOutOfBoundsException("Error! index = " + index
-                    + ", acceptable values: from 0 to" + (components.length - 1));
+            throw new IndexOutOfBoundsException("Index = " + index + ", acceptable values: from 0 to" + (components.length - 1));
         }
 
         return components[index];
@@ -52,8 +51,7 @@ public class Vector {
 
     public void setComponent(int index, double component) {
         if (index < 0 || index >= components.length) {
-            throw new IndexOutOfBoundsException("Error! index = " + index
-                    + ", acceptable values: from 0 to" + (components.length - 1));
+            throw new IndexOutOfBoundsException("Index = " + index + ", acceptable values: from 0 to" + (components.length - 1));
         }
 
         components[index] = component;
@@ -64,13 +62,13 @@ public class Vector {
     }
 
     public double getLength() {
-        double amount = 0;
+        double sum = 0;
 
         for (double component : components) {
-            amount += component * component;
+            sum += component * component;
         }
 
-        return Math.sqrt(amount);
+        return Math.sqrt(sum);
     }
 
     public void add(Vector vector) {
@@ -112,8 +110,7 @@ public class Vector {
             stringBuilder.append(e).append(", ");
         }
 
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
         stringBuilder.append("}");
 
         return stringBuilder.toString();
@@ -155,8 +152,9 @@ public class Vector {
 
     public static double getScalarProduct(Vector vector1, Vector vector2) {
         double scalarProduct = 0;
+        int minLength = Math.min(vector1.components.length, vector2.components.length);
 
-        for (int i = 0; i < Math.min(vector1.components.length, vector2.components.length); i++) {
+        for (int i = 0; i < minLength; i++) {
             scalarProduct += vector1.components[i] * vector2.components[i];
         }
 

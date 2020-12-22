@@ -1,17 +1,15 @@
-package ru.academits.ivanov.shapes.main;
+package ru.academits.ivanov.shapes_main;
 
-import ru.academits.ivanov.shapes.shapes.Circle;
-import ru.academits.ivanov.shapes.shapes.Rectangle;
-import ru.academits.ivanov.shapes.shapes.Square;
-import ru.academits.ivanov.shapes.shapes.Triangle;
-import ru.academits.ivanov.shapes.shapes.Shape;
+import ru.academits.ivanov.shapes.Circle;
+import ru.academits.ivanov.shapes.Rectangle;
+import ru.academits.ivanov.shapes.Square;
+import ru.academits.ivanov.shapes.Triangle;
+import ru.academits.ivanov.shapes.Shape;
 
 import java.util.Arrays;
 
-import static ru.academits.ivanov.shapes.comparators.AreaComparator.areaComparator;
-import static ru.academits.ivanov.shapes.comparators.PerimeterComparator.perimeterComparator;
-
 public class Main {
+
     private static Shape getMaxAreaShape(Shape[] shapes) {
         if (shapes.length == 0) {
             return null;
@@ -21,7 +19,7 @@ public class Main {
             return shapes[0];
         }
 
-        Arrays.sort(shapes, areaComparator);
+        Arrays.sort(shapes, new AreaComparator());
 
         return shapes[shapes.length - 1];
     }
@@ -31,13 +29,13 @@ public class Main {
             return null;
         }
 
-        Arrays.sort(shapes, perimeterComparator);
+        Arrays.sort(shapes, new PerimeterComparator());
 
         return shapes[shapes.length - 2];
     }
 
     public static void main(String[] args) {
-        Shape[] shapes = new Shape[]{
+        Shape[] shapes = {
                 new Square(2),
                 new Triangle(1, 1, 2, 2, 3, 1),
                 new Rectangle(1, 2),

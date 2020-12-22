@@ -1,43 +1,43 @@
-package ru.academits.ivanov.shapes.shapes;
+package ru.academits.ivanov.shapes;
 
 public class Square implements Shape {
-    private double side;
+    private double sideLength;
 
-    public Square(double side) {
-        this.side = side;
+    public Square(double sideLength) {
+        this.sideLength = sideLength;
     }
 
-    public double getSide() {
-        return side;
+    public double getSideLength() {
+        return sideLength;
     }
 
-    public void setSide(double side) {
-        this.side = side;
+    public void setSideLength(double sideLength) {
+        this.sideLength = sideLength;
     }
 
     @Override
     public double getWidth() {
-        return side;
+        return sideLength;
     }
 
     @Override
     public double getHeight() {
-        return side;
+        return sideLength;
     }
 
     @Override
     public double getArea() {
-        return side * side;
+        return sideLength * sideLength;
     }
 
     @Override
     public double getPerimeter() {
-        return 4 * side;
+        return 4 * sideLength;
     }
 
     @Override
     public String toString() {
-        return "Квадрат со стороной a = " + side +
+        return "Квадрат со стороной a = " + sideLength +
                 ". Ширина = " + getWidth() +
                 "; Высота = " + getHeight() +
                 "; Площадь = " + getArea() +
@@ -56,11 +56,11 @@ public class Square implements Shape {
 
         Square s = (Square) o;
 
-        return side == s.side;
+        return sideLength == s.sideLength;
     }
 
     @Override
     public int hashCode() {
-        return Double.hashCode(side);
+        return Double.hashCode(sideLength);
     }
 }

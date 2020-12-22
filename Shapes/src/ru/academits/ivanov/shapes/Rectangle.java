@@ -1,4 +1,4 @@
-package ru.academits.ivanov.shapes.shapes;
+package ru.academits.ivanov.shapes;
 
 public class Rectangle implements Shape {
     private double width;
@@ -9,22 +9,22 @@ public class Rectangle implements Shape {
         this.height = height;
     }
 
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
     @Override
     public double getWidth() {
         return width;
     }
 
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
     @Override
     public double getHeight() {
         return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ru.academits.ivanov.shapes.shapes;
+package ru.academits.ivanov.shapes;
 
 public class Triangle implements Shape {
     private double x1;
@@ -80,22 +80,23 @@ public class Triangle implements Shape {
     }
 
     private static double getSideLength(double x1, double y1, double x2, double y2) {
-        return Math.sqrt((y2 - x2) * (y2 - x2) + (y1 - x1) * (y1 - x1));
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
 
     @Override
     public double getArea() {
-        double semiPerimeter = (getSideLength(x1, x2, y1, y2) + getSideLength(x2, x3, y2, y3) +
-                getSideLength(x3, x1, y3, y1)) / 2;
+        double a = getSideLength(x1, y1, x2, y2);
+        double b = getSideLength(x2, y2, x3, y3);
+        double c = getSideLength(x3, y3, x1, y1);
 
-        return Math.sqrt(semiPerimeter * (semiPerimeter - getSideLength(x1, x2, y1, y2)) *
-                (semiPerimeter - getSideLength(x2, x3, y2, y3)) *
-                (semiPerimeter - getSideLength(x3, x1, y3, y1)));
+        double semiPerimeter = (a + b + c) / 2;
+
+        return Math.sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
     }
 
     @Override
     public double getPerimeter() {
-        return getSideLength(x1, x2, y1, y2) + getSideLength(x2, x3, y2, y3) + getSideLength(x3, x1, y3, y1);
+        return getSideLength(x1, y1, x2, y2) + getSideLength(x2, y2, x3, y3) + getSideLength(x3, y3, x1, y1);
     }
 
     @Override

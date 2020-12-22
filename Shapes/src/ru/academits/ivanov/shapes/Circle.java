@@ -1,4 +1,4 @@
-package ru.academits.ivanov.shapes.shapes;
+package ru.academits.ivanov.shapes;
 
 public class Circle implements Shape {
     private double radius;

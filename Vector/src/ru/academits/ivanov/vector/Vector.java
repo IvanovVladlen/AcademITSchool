@@ -7,7 +7,7 @@ public class Vector {
 
     public Vector(int componentsCount) {
         if (componentsCount <= 0) {
-            throw new IllegalArgumentException("Components count = " + componentsCount);
+            throw new IllegalArgumentException("Components count = " + componentsCount + " <= 0");
         }
 
         components = new double[componentsCount];
@@ -22,8 +22,12 @@ public class Vector {
     }
 
     public Vector(double[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array is null");
+        }
+
         if (array.length == 0) {
-            throw new IllegalArgumentException("Array length = " + array.length);
+            throw new IllegalArgumentException("Array length is 0");
         }
 
         components = Arrays.copyOf(array, array.length);
@@ -31,11 +35,11 @@ public class Vector {
 
     public Vector(int componentsCount, double[] array) {
         if (componentsCount <= 0) {
-            throw new IllegalArgumentException("Components count = " + componentsCount);
+            throw new IllegalArgumentException("Components count = " + componentsCount + " <= 0");
         }
 
-        if (array.length < 0) {
-            throw new IllegalArgumentException("Array length = " + array.length);
+        if (array == null) {
+            throw new IllegalArgumentException("Array is null");
         }
 
         components = Arrays.copyOf(array, componentsCount);

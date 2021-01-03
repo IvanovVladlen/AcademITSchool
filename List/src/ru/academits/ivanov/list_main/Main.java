@@ -9,10 +9,10 @@ public class Main {
         list.add(5);
         list.add(1);
         list.add(8);
-        list.addAtFirst(12);
+        list.addFirst(12);
         list.addByIndex(4, 1);
-        list.addByIndex(22, 3);
-        list.addAtFirst(6);
+        list.addByIndex(1, 3);
+        list.addFirst(6);
         list.add(1);
         list.add(8);
         list.add(25);
@@ -31,7 +31,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Удаление элемента по индексу 2");
-        int deleteItem2 = list.deleteOnIndex(2);
+        int deleteItem2 = list.deleteByIndex(2);
         System.out.println("Значение удаленного элемента: " + deleteItem2);
 
         System.out.println("Итоговый список: " + list);
@@ -39,20 +39,20 @@ public class Main {
 
         System.out.println("Удаление элемента по значению 8");
         boolean checkDelete = list.delete(8);
-        System.out.println("Элемент или элементы были удалены: " + checkDelete);
+        System.out.println("Элемент был удален: " + checkDelete);
 
         System.out.println("Итоговый список: " + list);
         System.out.println();
 
         System.out.println("Установка нового значения по индексу 2");
-        int setItem = list.setItem(2, 33);
+        int setItem = list.setData(2, 33);
         System.out.println("Старое значение элемента: " + setItem);
 
         System.out.println("Итоговый список: " + list);
         System.out.println();
 
         System.out.println("Получение значения первого элемента");
-        int data = list.getFirstData();
+        int data = list.getFirst();
         System.out.println("Значение элемента: " + data);
         System.out.println();
 

@@ -4,21 +4,21 @@ import java.util.NoSuchElementException;
 
 public class SinglyLinkedList<T> {
     private ListItem<T> head;
-    private int count;
+    private int size;
 
     public SinglyLinkedList() {
     }
 
     public SinglyLinkedList(T data) {
         head = new ListItem<>(data);
-        count = 1;
+        size = 1;
     }
 
     public int getSize() {
-        return count;
+        return size;
     }
 
-    public T getFirstData() {
+    public T getFirst() {
         if (head == null) {
             throw new NoSuchElementException("Односвязный список пуст.");
         }
@@ -26,8 +26,8 @@ public class SinglyLinkedList<T> {
         return head.getData();
     }
 
-    public ListItem<T> getItem(int index) {
-        indexCheck(index);
+    private ListItem<T> getItem(int index) {
+        checkIndex(index);
 
         ListItem<T> currentItem = head;
 
@@ -38,8 +38,14 @@ public class SinglyLinkedList<T> {
         return currentItem;
     }
 
-    public T setItem(int index, T data) {
-        indexCheck(index);
+    public T getData(int index) {
+        checkIndex(index);
+
+        return getItem(index).getData();
+    }
+
+    public T setData(int index, T data) {
+        checkIndex(index);
 
         ListItem<T> item = getItem(index);
         T oldData = item.getData();
@@ -49,35 +55,34 @@ public class SinglyLinkedList<T> {
         return oldData;
     }
 
-    public T deleteOnIndex(int index) {
-        indexCheck(index);
+    public T deleteByIndex(int index) {
+        checkIndex(index);
 
         if (index == 0) {
             return deleteFirst();
         }
 
-        ListItem<T> previousItem = getItem(index - 1);
-        ListItem<T> currentItem = getItem(index);
+        ListItem<T> item = getItem(index - 1);
+        T deleteData = item.getNext().getData();
+        item.setNext(item.getNext().getNext());
 
-        previousItem.setNext(currentItem.getNext());
+        size--;
 
-        count--;
-
-        return currentItem.getData();
+        return deleteData;
     }
 
-    public void addAtFirst(T data) {
+    public void addFirst(T data) {
         head = new ListItem<>(data, head);
-        count++;
+        size++;
     }
 
-    public void addByIndex(T data, int index) {
-        if (index != count) {
-            indexCheck(index);
+    public void addByIndex(int index, T data) {
+        if (index != size) {
+            checkIndex(index);
         }
 
         if (index == 0) {
-            addAtFirst(data);
+            addFirst(data);
 
             return;
         }
@@ -85,31 +90,29 @@ public class SinglyLinkedList<T> {
         ListItem<T> previousItem = getItem(index - 1);
         ListItem<T> currentItem = previousItem.getNext();
 
-        ListItem<T> item = new ListItem<>(data, currentItem);
-        previousItem.setNext(item);
+        previousItem.setNext(new ListItem<>(data, currentItem));
 
-        count++;
+        size++;
     }
 
     public void add(T data) {
-        addByIndex(data, count);
+        addByIndex(size, data);
     }
 
     public boolean delete(T data) {
-        if (head == null) {
-            throw new NoSuchElementException("Односвязный список пуст.");
+        if (size == 0) {
+            return false;
         }
 
-        boolean check = false;
-
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < size; i++) {
             if (data.equals(getItem(i).getData())) {
-                deleteOnIndex(i);
-                check = true;
+                deleteByIndex(i);
+
+                return true;
             }
         }
 
-        return check;
+        return false;
     }
 
     public T deleteFirst() {
@@ -117,32 +120,26 @@ public class SinglyLinkedList<T> {
             throw new NoSuchElementException("Односвязный список пуст.");
         }
 
-        T deleteData = head.getData();
+        T deletedData = head.getData();
         head = head.getNext();
 
-        count--;
+        size--;
 
-        return deleteData;
+        return deletedData;
     }
 
     public void reverse() {
-        if (head == null) {
-            throw new NoSuchElementException("Односвязный список пуст.");
-        }
-
-        if (head.getNext() == null) {
+        if (head == null || head.getNext() == null) {
             return;
         }
 
-        ListItem<T> previous = head.getNext();
+        ListItem<T> previous = head;
         ListItem<T> current = previous.getNext();
-        ListItem<T> next;
 
-        head.setNext(null);
-        previous.setNext(head);
+        previous.setNext(null);
 
         while (current != null) {
-            next = current.getNext();
+            ListItem<T> next = current.getNext();
             current.setNext(previous);
 
             if (next == null) {
@@ -162,13 +159,13 @@ public class SinglyLinkedList<T> {
         }
 
         copy.head = new ListItem<>(head.getData());
-        copy.count = count;
+        copy.size = size;
 
         ListItem<T> previousItem = copy.head;
 
         ListItem<T> currentItem = head.getNext();
 
-        for (int i = 1; i < count; i++) {
+        for (int i = 1; i < size; i++) {
             ListItem<T> copyItem = new ListItem<>(currentItem.getData());
 
             previousItem.setNext(copyItem);
@@ -180,9 +177,9 @@ public class SinglyLinkedList<T> {
         return copy;
     }
 
-    private void indexCheck(int index) {
-        if (index < 0 || index >= count) {
-            throw new IndexOutOfBoundsException("Индекс " + index + " за пределами допустимого значения (от 0, до " + (count - 1) + ")");
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Индекс " + index + " за пределами допустимого значения (от 0, до " + (size - 1) + ")");
         }
     }
 
@@ -197,11 +194,11 @@ public class SinglyLinkedList<T> {
 
         ListItem<T> item = head;
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < size; i++) {
             stringBuilder.append(item.getData());
             item = item.getNext();
 
-            if (i != count - 1) {
+            if (i != size - 1) {
                 stringBuilder.append(", ");
             }
         }

@@ -9,7 +9,6 @@ import ru.academits.ivanov.shapes.Shape;
 import java.util.Arrays;
 
 public class Main {
-
     private static Shape getMaxAreaShape(Shape[] shapes) {
         if (shapes.length == 0) {
             return null;

@@ -24,15 +24,15 @@ public class Main {
         System.out.println();
 
         System.out.println("Удаление первого элемента");
-        int deleteItem = list.deleteFirst();
-        System.out.println("Значение удаленного элемента: " + deleteItem);
+        int deletedData1 = list.deleteFirst();
+        System.out.println("Значение удаленного элемента: " + deletedData1);
 
         System.out.println("Итоговый список: " + list);
         System.out.println();
 
         System.out.println("Удаление элемента по индексу 2");
-        int deleteItem2 = list.deleteByIndex(2);
-        System.out.println("Значение удаленного элемента: " + deleteItem2);
+        int deletedData2 = list.deleteByIndex(2);
+        System.out.println("Значение удаленного элемента: " + deletedData2);
 
         System.out.println("Итоговый список: " + list);
         System.out.println();
@@ -45,8 +45,8 @@ public class Main {
         System.out.println();
 
         System.out.println("Установка нового значения по индексу 2");
-        int setItem = list.setData(2, 33);
-        System.out.println("Старое значение элемента: " + setItem);
+        int oldData = list.setData(2, 33);
+        System.out.println("Старое значение элемента: " + oldData);
 
         System.out.println("Итоговый список: " + list);
         System.out.println();

@@ -1,6 +1,7 @@
 package ru.academits.ivanov.list;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SinglyLinkedList<T> {
     private ListItem<T> head;
@@ -63,12 +64,12 @@ public class SinglyLinkedList<T> {
         }
 
         ListItem<T> item = getItem(index - 1);
-        T deleteData = item.getNext().getData();
+        T deletedData = item.getNext().getData();
         item.setNext(item.getNext().getNext());
 
         size--;
 
-        return deleteData;
+        return deletedData;
     }
 
     public void addFirst(T data) {
@@ -100,13 +101,15 @@ public class SinglyLinkedList<T> {
     }
 
     public boolean delete(T data) {
-        if (size == 0) {
-            return false;
-        }
+        for (ListItem<T> currentItem = head, previousItem = null; currentItem != null; previousItem = currentItem, currentItem = currentItem.getNext()) {
+            if (Objects.equals(data, currentItem.getData())) {
+                if (previousItem == null) {
+                    head = currentItem.getNext();
+                } else {
+                    previousItem.setNext(currentItem.getNext());
+                }
 
-        for (int i = 0; i < size; i++) {
-            if (data.equals(getItem(i).getData())) {
-                deleteByIndex(i);
+                size--;
 
                 return true;
             }

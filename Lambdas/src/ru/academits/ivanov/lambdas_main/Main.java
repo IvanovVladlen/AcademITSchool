@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
-
     public static void main(String[] args) {
         List<Person> peoples = Arrays.asList(
                 new Person("Иван", 50),
@@ -52,7 +51,6 @@ public class Main {
 
         System.out.println(peopleUnder18Years);
 
-
         OptionalDouble averageAge = peopleUnder18Years.stream()
                 .mapToDouble(Person::getAge)
                 .average();
@@ -62,20 +60,20 @@ public class Main {
 
         System.out.println("г) при помощи группировки получить Map, в котором ключи имена, а значения – средний возраст");
 
-        Map<String, Double> namesAndAverageAge = peoples.stream()
+        Map<String, Double> averageAgeByName = peoples.stream()
                 .collect(Collectors.groupingBy(Person::getName, Collectors.averagingDouble(Person::getAge)));
 
-        namesAndAverageAge.forEach((name, age) -> System.out.printf("Имя: %s; Средний возраст: %.1f%n", name, age));
+        averageAgeByName.forEach((name, age) -> System.out.printf("Имя: %s; Средний возраст: %.1f%n", name, age));
         System.out.println();
 
         System.out.println("д) получить людей, возраст которых от 20 до 45, вывести в консоль их имена в порядке убывания возраста");
 
-        List<Person> peopleAged20To45 = peoples.stream()
+        List<Person> peopleAgedFrom20To45 = peoples.stream()
                 .filter(p -> p.getAge() >= 20 && p.getAge() <= 45)
                 .sorted((p1, p2) -> p2.getAge() - p1.getAge())
                 .collect(Collectors.toList());
 
-        System.out.println(peopleAged20To45);
+        System.out.println(peopleAgedFrom20To45);
         System.out.println();
 
         System.out.println("Задача 2. Создать бесконечный поток корней чисел");
@@ -83,7 +81,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите число элементов которое нужно вычислить:");
-
         int numbersCount = scanner.nextInt();
 
         Stream.iterate(0, x -> x + 1)

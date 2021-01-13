@@ -38,8 +38,8 @@ public class Main {
         System.out.println();
 
         System.out.println("Удаление элемента по значению 8");
-        boolean checkDelete = list.delete(8);
-        System.out.println("Элемент был удален: " + checkDelete);
+        boolean checkDeleted = list.delete(8);
+        System.out.println("Элемент был удален: " + checkDeleted);
 
         System.out.println("Итоговый список: " + list);
         System.out.println();

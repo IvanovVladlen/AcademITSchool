@@ -2,21 +2,25 @@ package ru.academits.ivanov.view;
 
 import ru.academits.ivanov.controller.Controller;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class DesktopView implements View {
     private final Controller controller;
-    private JLabel result;
-    JComboBox<String> fromType;
-    JComboBox<String> toType;
 
-    public JComboBox<String> getFromType() {
-        return fromType;
+    private JLabel result;
+    private JComboBox<String> fromType;
+    private JComboBox<String> toType;
+
+    public String getFromType() {
+        return (String) fromType.getSelectedItem();
     }
 
-    public JComboBox<String> getToType() {
-        return toType;
+    public String getToType() {
+        return (String) toType.getSelectedItem();
     }
 
     public DesktopView(Controller controller) {
@@ -85,6 +89,7 @@ public class DesktopView implements View {
 
             frame.setVisible(true);
             frame.requestFocus();
+            frame.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
         });
     }
 

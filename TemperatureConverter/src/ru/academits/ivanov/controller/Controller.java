@@ -16,36 +16,36 @@ public class Controller {
     }
 
     public void convert(Double temperature) {
-        if (view.getFromType().getSelectedItem() == view.getToType().getSelectedItem()) {
+        if (view.getFromType().equals(view.getToType())) {
             view.setResultTemperature(temperature);
         }
 
-        if (view.getFromType().getSelectedItem() == "Цельсий" && view.getToType().getSelectedItem() == "Кельвин") {
+        if (view.getFromType().equals("Цельсий") && view.getToType().equals("Кельвин")) {
             double result = temperatureConverter.convertCelsiusToKelvin(temperature);
             view.setResultTemperature(result);
         }
 
-        if (view.getFromType().getSelectedItem() == "Цельсий" && view.getToType().getSelectedItem() == "Фаренгейт") {
+        if (view.getFromType().equals("Цельсий") && view.getToType().equals("Фаренгейт")) {
             double result = temperatureConverter.convertCelsiusToFahrenheit(temperature);
             view.setResultTemperature(result);
         }
 
-        if (view.getFromType().getSelectedItem() == "Кельвин" && view.getToType().getSelectedItem() == "Цельсий") {
+        if (view.getFromType().equals("Кельвин") && view.getToType().equals("Цельсий")) {
             double result = temperatureConverter.convertKelvinToCelsius(temperature);
             view.setResultTemperature(result);
         }
 
-        if (view.getFromType().getSelectedItem() == "Кельвин" && view.getToType().getSelectedItem() == "Фаренгейт") {
+        if (view.getFromType().equals("Кельвин") && view.getToType().equals("Фаренгейт")) {
             double result = temperatureConverter.convertKelvinToFahrenheit(temperature);
             view.setResultTemperature(result);
         }
 
-        if (view.getFromType().getSelectedItem() == "Фаренгейт" && view.getToType().getSelectedItem() == "Цельсий") {
+        if (view.getFromType().equals("Фаренгейт") && view.getToType().equals("Цельсий")) {
             double result = temperatureConverter.convertFahrenheitToCelsius(temperature);
             view.setResultTemperature(result);
         }
 
-        if (view.getFromType().getSelectedItem() == "Фаренгейт" && view.getToType().getSelectedItem() == "Кельвин") {
+        if (view.getFromType().equals("Фаренгейт") && view.getToType().equals("Кельвин")) {
             double result = temperatureConverter.convertFahrenheitToKelvin(temperature);
             view.setResultTemperature(result);
         }

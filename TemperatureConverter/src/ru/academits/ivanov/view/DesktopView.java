@@ -2,11 +2,8 @@ package ru.academits.ivanov.view;
 
 import ru.academits.ivanov.controller.Controller;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class DesktopView implements View {
     private final Controller controller;

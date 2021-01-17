@@ -28,8 +28,8 @@ public class Main {
         System.out.println("a) Получить список уникальных имен");
 
         List<String> uniqueNames = peoples.stream()
-                .distinct()
                 .map(Person::getName)
+                .distinct()
                 .collect(Collectors.toList());
 
         System.out.println(uniqueNames);
@@ -60,10 +60,10 @@ public class Main {
 
         System.out.println("г) при помощи группировки получить Map, в котором ключи имена, а значения – средний возраст");
 
-        Map<String, Double> averageAgeByName = peoples.stream()
+        Map<String, Double> averageAgesByNames = peoples.stream()
                 .collect(Collectors.groupingBy(Person::getName, Collectors.averagingDouble(Person::getAge)));
 
-        averageAgeByName.forEach((name, age) -> System.out.printf("Имя: %s; Средний возраст: %.1f%n", name, age));
+        averageAgesByNames.forEach((name, age) -> System.out.printf("Имя: %s; Средний возраст: %.1f%n", name, age));
         System.out.println();
 
         System.out.println("д) получить людей, возраст которых от 20 до 45, вывести в консоль их имена в порядке убывания возраста");

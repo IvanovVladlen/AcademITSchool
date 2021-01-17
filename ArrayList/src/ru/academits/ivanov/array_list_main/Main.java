@@ -1,20 +1,18 @@
-package ru.academits.ivanov.myarraylist_main;
+package ru.academits.ivanov.array_list_main;
 
-import ru.academits.ivanov.myarraylist.MyArrayList;
+import ru.academits.ivanov.array_list.ArrayList;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //тест конструкторов MyArrayList
-
+        // тест конструкторов MyArrayList
         System.out.println("Создание коллекции с помощью конструктора без аргументов, и добавление экземпляров коллекции с помощью метода add.");
         System.out.println("Можно передать конструктору всестимость коллекции, по умолчанию вместимость равна 10");
 
-        MyArrayList<Integer> numbers1 = new MyArrayList<>();
+        ArrayList<Integer> numbers1 = new ArrayList<>();
         numbers1.add(5);
         numbers1.add(1, 4);
 
@@ -23,28 +21,27 @@ public class Main {
 
         System.out.println("Создание коллекции с помощью конструктора принимающего массив");
         Integer[] array1 = {6, 8, 12, 5, 14, 66, 6};
-        MyArrayList<Integer> numbers2 = new MyArrayList<>(array1);
+        ArrayList<Integer> numbers2 = new ArrayList<>(array1);
         System.out.println(numbers2);
         System.out.println();
 
         System.out.println("Создание коллекции с помощью конструктора принимающего вместимость и массив");
 
         Integer[] array2 = {10, 0, 4, 6};
-        MyArrayList<Integer> numbers3 = new MyArrayList<>(100, array2);
+        ArrayList<Integer> numbers3 = new ArrayList<>(100, array2);
         System.out.println(numbers3);
         System.out.println();
 
         System.out.println("Создание коллекции с помощью конструктора принимающего коллекцию + добавление в полученную коллекцию другой коллекции");
 
-        MyArrayList<Integer> numbers4 = new MyArrayList<>(numbers3);
+        ArrayList<Integer> numbers4 = new ArrayList<>(numbers3);
         numbers4.addAll(numbers2);
 
         System.out.println(numbers4);
         System.out.println();
 
-        //тест методов MyArrayList
-
-        MyArrayList<String> names = new MyArrayList<>(Arrays.asList("Егор", "Кирилл", "Ирина", "Анатолий", "Арсений"));
+        // тест методов MyArrayList
+        ArrayList<String> names = new ArrayList<>(Arrays.asList("Егор", "Кирилл", "Ирина", "Анатолий", "Арсений"));
         System.out.println("Коллекция имен: " + names);
         System.out.println();
 
@@ -65,7 +62,7 @@ public class Main {
         System.out.println("Метод iterator:");
         System.out.println("Вывод элементов коллекции names с помощью итератора:");
 
-        Iterator iterator = names.iterator();
+        Iterator<String> iterator = names.iterator();
 
         while (iterator.hasNext()) {
             System.out.print(iterator.next() + " ");
@@ -127,7 +124,7 @@ public class Main {
 
         names4.addAll(3, names5);
 
-        System.out.println("После добавления к списку names4 списка names5 по индексу 2");
+        System.out.println("После добавления к списку names4 списка names5 по индексу 3");
         System.out.println("Коллекция имен names4 = " + names4);
         System.out.println();
 
@@ -142,11 +139,11 @@ public class Main {
         System.out.println("Метод retainAll(Collection<?> c)");
 
         Integer[] integers1 = {6, 8, 12, 5, 5, 88, 160, 15, 14, 66, 6};
-        List<Integer> list1 = new MyArrayList<>(integers1);
+        List<Integer> list1 = new ArrayList<>(integers1);
         System.out.println(list1);
 
         Integer[] integers2 = {6, 8, 12, 5, 88};
-        List<Integer> list2 = new MyArrayList<>(integers2);
+        List<Integer> list2 = new ArrayList<>(integers2);
         System.out.println(list2);
 
         list1.retainAll(list2);
@@ -176,7 +173,7 @@ public class Main {
         System.out.println("Метод remove(int index)");
 
         Integer[] integers3 = {6, 8, 12, 5, 5, 88, 160, 15, 14, 66, 6};
-        List<Integer> list3 = new MyArrayList<>(integers3);
+        List<Integer> list3 = new ArrayList<>(integers3);
         System.out.println("Коллекция list3: " + list3);
 
         int removedData = list3.remove(1);

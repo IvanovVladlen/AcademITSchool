@@ -2,22 +2,33 @@ package ru.academits.ivanov.hash_table;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class HashTable<T> implements Collection<T> {
     private static final int DEFAULT_LENGTH = 10;
 
-    private final ArrayList<T>[] arrayLists;
+    private final ArrayList<T>[] lists;
     private int size;
     private int modCount;
 
-    public HashTable(ArrayList<T>[] arrayLists) {
-        this.arrayLists = arrayLists;
+    public HashTable() {
+        //noinspection unchecked
+        this.lists = (ArrayList<T>[]) new ArrayList<?>[DEFAULT_LENGTH];
+    }
+
+    public HashTable(int length) {
+        if (length < 0) {
+            throw new IllegalArgumentException("capacity (" + length + ") < 0");
+        }
+
+        //noinspection unchecked
+        this.lists = (ArrayList<T>[]) new ArrayList<?>[length];
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -78,5 +89,14 @@ public class HashTable<T> implements Collection<T> {
     @Override
     public Object[] toArray(Object[] a) {
         return new Object[0];
+    }
+
+    public static void main(String[] args) {
+        HashSet<Integer> set = new HashSet<>(15);
+
+        set.add(15);
+        set.add(2);
+
+        System.out.println(set);
     }
 }
